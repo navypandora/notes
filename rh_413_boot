@@ -1,0 +1,13 @@
+password expire after 30 days:
+System2:
+vim /etc/login.defs
+PASS_MAX_DAYS 30
+
+LUKS
+
+
+
+
+IPA
+ipa-server-install --realm=EXAMPLE.COM  --ds-password=redhat@123 --admin-password=redhat@123 --idstart=10000 --idmax=10200
+

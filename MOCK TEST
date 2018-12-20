@@ -1,0 +1,128 @@
+MOCK TEST
+
+Question 1:
+dhclient (DHCP) - assign ip manually or automatically
+edit /etc/sysconfig/network-script/enp0s3
+change BOOTPROTO="static"
+	   IPADDR=192.168.1.12
+	   NETMASK=255.255.255.0
+	   GATEWAY=192.168.1.1
+	   DNS1=4.4.2.2
+	   DNS2=8.8.8.8
+systemctl restart network
+hostnamectl set-hostname server12.com
+exec bash
+
+
+Question 2:
+Delete the previous partitions on both drives
+pvcreate /dev/sdc1(convert to physical volume)
+pvdisplay /dev/sdc1(to check)
+pvcreate /dev/sda2
+pvdisplay /dev/sda2
+vgcreate volumegroup /dev/sdc1 /dev/sda2
+(volume group)
+vgdisplay volumegroup(to check)
+lvcreate --name volumename --size 170G  /dev/volumegroup
+mkfs.ext4 /dev/volumegroup/volumename
+(format this partition)
+mkdir /media/lv0
+mount /dev/volumegroup/volumename  /media/lv/
+lvextend --size  +1G /dev/volumegroup/volumename
+(to extend the size for ext4)
+not shown in lvdisplay | e2fsck -f /dev/volumegroup/volumename (if unmounted)
+resize2fs /dev/volumegroup/volumename (if already mounted)
+(to extend the size for xfs)
+xfs_growfs /dev/volumegroup/volumename
+
+
+Question 3:
+useradd -u 4332 jean
+
+
+Question 4:
+groupadd Kanishk 
+useradd  -G(secondary group)   Kanishk 	 user1
+/etc/group
+
+useradd -s /sbin/nologin sarah
+
+mkdir /common ; mkdir /common/adm
+
+cd /common
+chgrp manager adm
+
+chmod 2770 adm
+
+
+Question 5:
+
+setfacl
+
+Question 6:
+
+wget Kernel (google drive)
+rpm kernel.rpm
+
+Question 7:
+IP forwarding permanently
+sysctl -a | grep ip_forward
+net.ipv4.ip_forward = 1 (this should be 1 for the routing to be on)
+edit /etc/systcl.conf
+sysctl -p 
+
+Question 8:
+Create Tar of folder /root/new with gzip and put in /root
+
+Question 9:
+
+
+
+
+
+
+
+
+
+
+
+Steps for RHCSA:
+1. Q1. break password - rd.break enforcing =0; ctrl-x; mount -o remount,rw /sysroot; chroot /sysroot; passwd root;exit
+-----press enter (multiple times)
+2. restorecon -v /etc/shadow
+3. Q2. IP static: to open question paper (ping instructor to start the exam) | set-hostname | onboot-yes | systemctl restart network|
+ping server****
+4. Reboot
+5. ssh root@IP -X
+6. Q3. setup repo
+7. yum repolist
+8. Q4. set SElinux=Enforcing; edit /etc/SElinux/config change permissive to enforcing
+9. Q5. disable firewall - systemctl stop firewalld, systemctl disable firewalld
+10. Q6. NTP - yum install ntp; edit /etc/ntp.conf; comment out all the servers; server instructor.example.com; systemctl restart ntpd; systemctl enable ntpd; edit /etc/rclocal - add these lines systemctl restart ntpd; chmod +x /etc/rc.local
+11. optional Reboot
+12. install Kernel - wget ftp://ssdjd.cisdjccd.com; rpm -ivh kernel.rpm;
+14. LVM -modify - lvdisplay; lvextend --size 200M  /dev/wgroup/wshare; ext4: resize2fs /dev/wgroup/wshare  xfs: xfs_growfs /dev/wgroup/wshare  
+15. Reboot
+16. LVM Create (mount -a after entry in fstab)
+17. Swap: mkswap /dev/sda2; swapon /dev/sda2; swapon -s; edit /etc/fstab; /dev/sda2		swap 	swap 	defaults	0 0; mount -a
+18. Reboot
+19. Create User
+20. Collabarative directory
+21. crontab /
+22. IP forwarding
+23. Tar -cjvf (bzip2) -czvf (gzip)
+24. Copy files made by user: find / -user joe; cp all files found to /root/found;
+25. grep, httpd, vsftpd - systemctl restart vsftpd, file security
+26. LDAP
+27. autofs
+-Reboot
+Recheck
+Reboot
+ping instructor
+
+
+
+Startegy for RHCSA:
+1. Complete exam in 1 and a half hour
+2. Read the instructions for 10 minutes
+3. to reboot click on the icon on base system
