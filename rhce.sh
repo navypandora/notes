@@ -17,5 +17,15 @@ nmcli connection add con-name linux2 ifname wlp6s0 type wifi ssid linux ip4 192.
 Creating a virtual copy of a network card: ifconfig enp0s3:1 192.168.1.2/8
 
 Vitual network Card:
-A single IP can only be assigned to one network card
- 
+A single IP can only be assigned to only one network card
+Link Aggregation protocol is implemented using teamd
+
+round robin:
+nmcli connection add con-name m ifname myteam0  type team 
+nmcli connection add con-name slave1 ifname enp0s3 type team-slave master myteam0
+nmcli connection up slave1
+nmcli connection add con-name slave2 ifname enp0s8 type team-slave master myteam0
+nmcli connection up slave2
+
+active-backup:
+nmcli connection add con-name m ifname myteam0  type team config {"runner": {"name": "activebackup"}}
