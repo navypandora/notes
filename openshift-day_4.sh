@@ -37,3 +37,13 @@ oc get dc (deployment configuration)
 oc describe dc(get details of deployment configuration)
 
 oc  scale --replicas=5  dc   test1   (create replicas of the Application)
+
+Load Balancer=SVC
+Load balancer is a container which runs on the master(which is connected through PAT)
+oc expose service  myweb  --hostname=xyz.apps.lab.example.com
+
+
+To encrypt a web server:
+create a private key, then create a public key, then create a certificate.
+
+

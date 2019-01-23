@@ -12,6 +12,8 @@ Identity Management server
 Redhat IDM - free IPA(Identity Policy Auditing)
 IDM server contains: LDAP server, kerberos server, dns server
 all the systems should running on same time, we can use use the ntp server
+Linux, Dockers,Ansible,Suse Manager, Saltstack,GCP, Kubernetes.
+
 
 change date: date 1114191818
 date 1114191818
