@@ -1,5 +1,5 @@
 find . -type f -name 'cron*' (find in the current directory, type file only-no directories, with the name cron*)
-find /home -perm 555 -exec chmod 777 {}  \; (find files with permisions 555 in the /home directory and execute chmod 555 to the found results)
+find /home -perm 555 -exec chmod 777 {}  \; (find files with permisions 555 in the /home directory and execute chmod 777 to the found results)
 find / -mtime +1(find files in / which were modified in the last 1 day)
 find / -a +1 (find files accessed in the last 1 day)
 find / -size 1M
