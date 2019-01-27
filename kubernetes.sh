@@ -35,6 +35,9 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
+export KUBECONFIG=$HOME/.kube/admin.conf
+
+
 
 kubectl get nodes
 
@@ -75,7 +78,8 @@ At this point, the Nodes will not be ready.
 This is because the Container Network Interface has not been deployed.
 The Container Network Interface (CNI) defines how the different nodes and their workloads should communicate.
 we will be using weave in this case:
-kubectl apply -f /opt/weave-kube
+kubectl apply -f https://git.io/weave-kube
+
 
 Weave will now deploy as a series of Pods on the cluster. 
 The status of this can be viewed using the command $ kubectl get pod -n kube-system
@@ -133,3 +137,10 @@ Another approach to making a service available outside of the cluster is via Ext
 kubeadm init --cri-socket=/var/run/crio/crio.sock
 $ crictl images
 $ crictl ps -a
+
+***PV***
+
+In the case of NFS, one PersistentVolume relates to one NFS directory. 
+When a container has finished with the volume, the data can either be Retained for future use or the volume can be
+Recycled meaning all the data is deleted. The policy is defined by the persistentVolumeReclaimPolicy option.
+
