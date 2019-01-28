@@ -281,3 +281,9 @@ vi train-schedule-kube.yml:
 	      targetAverageUtilization: 50 (the autoscaler will make sure that avergae of cpu usage of all the pods is gonna be 50%)
 
 kubectl get hpa(get average usage)
+
+***canary-testing***
+
+pushing new code  to a small group of users.
+deploy the same application of the different version with track: canary instead of stable
+basically deploy a new app to the public for testing
