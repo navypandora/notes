@@ -15,7 +15,7 @@ add this to the pathfatal: cannot do a partial commit during a merge.
 
 mkdir /myproj
 cd /myproj
-graddle wrapper (this will add graddle files to your project)
+gradle wrapper (this will add graddle files to your project)
 
 ./gradelw build (this command will install the required graddle if not installed in your environment)
 

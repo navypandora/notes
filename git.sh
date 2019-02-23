@@ -11,10 +11,13 @@ git commit -a -m "message" <filename> (add and commit file)
 add patterns(*.tmp. build/*) to .gitignore file, to ignore those files to be tracked 
 git check-ignore *.tmp (to check what files are being ignored)
 
-git tag -a v0.1 -m "message"
+git tag v1 COMMIT_ID
 git tag (view all tags in the repo)
-git show v0.1 (view tag details)
-git tag -f v0.1 (delete tag)
+git show v1 (view tag details)
+git push origin v1
+git ls-remote --tags
+git fetch --tags
+git tag -d v1 (delete tag) or git push --delete origin v1
 
 git branch dev (create a new branch)
 git checkout dev
