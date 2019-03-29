@@ -18,6 +18,7 @@ Kubernetes repo: cat > /etc/yum.repos.d/Kubernetes.repo
                 gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 swapoff -a
 setenforce 0 
+iptables -F
 
 yum install -y kubeadm kubelet kubectl
 systemctl enable kubelet
@@ -35,8 +36,7 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-export KUBECONFIG=$HOME/.kube/admin.conf
-
+kubectl  apply  --filename https://git.io/weave-kube-1.6
 
 
 kubectl get nodes
